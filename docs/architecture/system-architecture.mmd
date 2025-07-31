@@ -1,0 +1,24 @@
+graph TD
+    User["User"]
+    FE["[Frontend] Next.js (React + TS)"]
+    BE["[Backend] .NET 8 API (Modular Monolith)"]
+    OneSignal["OneSignal"]
+    PG["PostgreSQL"]
+    MG["MongoDB"]
+    Auth0["Auth0"]
+    BetterStack["BetterStack"]
+    Brevo["Brevo"]
+    Sentry["Sentry"]
+
+    User -->|HTTP or HTTPS| FE
+    FE -->|Authentication| Auth0
+    FE -->|REST or GraphQL and JWT| BE
+    FE -->|Push subscription registration or Receive notifications| OneSignal
+    FE -->|JavaScript error logging| Sentry
+    OneSignal -->|Send notification to FE/browser| FE
+    BE -->|JWT Validation| Auth0
+    BE -->|Relational persistence for users and resources| PG
+    BE -->|Flexible persistence for notes and tags| MG
+    BE -->|Backend logging and monitoring| BetterStack
+    BE -->|Sending transactional emails| Brevo
+    BE -->|Sending push notifications| OneSignal
