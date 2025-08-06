@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant User
+    participant FE as Frontend
+    participant BE as Backend
+    participant PG as PostgreSQL
+    participant MG as MongoDB
+
+    User->>FE: Fill and submit new resource form (incl. tags)
+    FE->>BE: POST /learning-resources (resource data, tags)
+    BE->>PG: Save LearningResource record
+    BE->>MG: (Optional) Save metadata or flexible fields
+    BE->>PG: Upsert tags (create new if not exist, else reuse)
+    BE->>PG: Create LearningResourceTag links
+    BE-->>FE: Return created resource (with tags)
+    FE-->>User: Show new resource in list

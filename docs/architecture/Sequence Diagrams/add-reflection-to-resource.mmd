@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant User
+    participant FE as Frontend
+    participant BE as Backend
+    participant PG as PostgreSQL
+    participant MG as MongoDB
+
+    User->>FE: Submit reflection (text) for a resource
+    FE->>BE: POST /resources/{id}/reflections (with text)
+    BE->>PG: Create Reflection (relational)
+    BE->>MG: (Optional) Store fulltext/extra (if needed)
+    BE-->>FE: Confirm reflection added
+    FE-->>User: Show reflection in resource view

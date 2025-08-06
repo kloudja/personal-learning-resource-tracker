@@ -1,0 +1,83 @@
+erDiagram
+    USER ||--o{ LEARNING_RESOURCE : owns
+    USER ||--o{ TAG : categorizes
+    USER ||--o{ REFLECTION : writes
+    USER ||--o{ ACTIVITY_LOG : logs
+    USER ||--o{ NOTIFICATION_PREFERENCE : sets
+    LEARNING_RESOURCE ||--o{ REFLECTION : contains
+    LEARNING_RESOURCE ||--o{ LEARNING_RESOURCE_TAG : tagged
+    TAG ||--o{ LEARNING_RESOURCE_TAG : used_in
+
+    NOTIFICATION_PREFERENCE {
+        string Id PK
+        string UserId FK
+        string Type
+        bool Enabled
+        datetime CreatedAt
+        datetime UpdatedAt
+        datetime DeletedAt
+    }
+    USER {
+        string Id PK
+        string Email
+        string Auth0Id
+        string Name
+        string Role
+        string LanguagePreference
+        datetime CreatedAt
+        datetime UpdatedAt
+        datetime DeletedAt
+    }
+    LEARNING_RESOURCE {
+        string Id PK
+        string UserId FK
+        string Title
+        string Type
+        string Url
+        string Status
+        int EstimatedTime
+        int Priority
+        string Author
+        string Source
+        datetime PublishedAt
+        json Metadata
+        datetime CreatedAt
+        datetime UpdatedAt
+        datetime DeletedAt
+    }
+    TAG {
+        string Id PK
+        string UserId FK
+        string Name
+        datetime CreatedAt
+        datetime UpdatedAt
+        datetime DeletedAt
+    }
+    LEARNING_RESOURCE_TAG {
+        string LearningResourceId FK
+        string TagId FK
+        datetime CreatedAt
+        datetime UpdatedAt
+        datetime DeletedAt
+    }
+    REFLECTION {
+        string Id PK
+        string LearningResourceId FK
+        string UserId FK
+        string Text
+        datetime CreatedAt
+        datetime UpdatedAt
+        datetime DeletedAt
+    }
+    ACTIVITY_LOG {
+        string Id PK
+        string UserId FK
+        string ActionType
+        string EntityId
+        bool Success
+        string ErrorMessage
+        json Data
+        datetime CreatedAt
+        datetime UpdatedAt
+        datetime DeletedAt
+    }

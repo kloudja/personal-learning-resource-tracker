@@ -1,0 +1,19 @@
+sequenceDiagram
+    %% --- Tag Management: Create Tag ---
+    participant User
+    participant FE as Frontend
+    participant BE as Backend
+    participant PG as PostgreSQL
+
+    User->>FE: Submit new tag (create)
+    FE->>BE: POST /tags (with tag name)
+    BE->>PG: Insert new Tag (if not exists)
+    BE-->>FE: Return created tag
+    FE-->>User: Show tag available for assignment
+
+    %% --- Tag Management: Assign Tag to Resource ---
+    User->>FE: Assign existing tag to resource
+    FE->>BE: POST /resources/{id}/tags (with tag id)
+    BE->>PG: Create LearningResourceTag link
+    BE-->>FE: Confirm tag assignment
+    FE-->>User: Show updated tags on resource

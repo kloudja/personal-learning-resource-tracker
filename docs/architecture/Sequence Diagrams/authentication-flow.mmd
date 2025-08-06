@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant User
+    participant FE as Frontend (Next.js)
+    participant Auth0
+    participant BE as Backend (.NET API)
+
+    User->>FE: Open app / Request protected resource
+    alt Not authenticated or token expired
+        FE->>Auth0: Redirect to Auth0 login
+        User->>Auth0: Enter credentials
+        Auth0-->>FE: Redirect with JWT/Token
+    end
+    FE->>BE: Call API with JWT (Authorization header)
+    BE->>Auth0: Validate JWT (on first request or via lib)
+    alt JWT valid
+        BE-->>FE: API response (data)
+        FE-->>User: Show authenticated UI
+    else JWT invalid/expired
+        BE-->>FE: Unauthorized error
+        FE-->>User: Show login prompt / error
+    end
