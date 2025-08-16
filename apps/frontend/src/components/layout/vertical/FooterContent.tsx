@@ -15,6 +15,8 @@ import { verticalLayoutClasses } from '@layouts/utils/layoutClasses'
 const FooterContent = () => {
   // Hooks
   const { isBreakpointReached } = useVerticalNav()
+  const docsUrl = process.env.NEXT_PUBLIC_DOCS_URL
+  const repoName = process.env.NEXT_PUBLIC_REPO_NAME
 
   return (
     <div
@@ -36,16 +38,20 @@ const FooterContent = () => {
           <Link href='https://themeselection.com' target='_blank' className='text-primary'>
             More Themes
           </Link>
-          <Link href={process.env.NEXT_PUBLIC_DOCS_URL as string} target='_blank' className='text-primary'>
-            Documentation
-          </Link>
-          <Link
-            href={`https://github.com/themeselection/${process.env.NEXT_PUBLIC_REPO_NAME}/issues`}
-            target='_blank'
-            className='text-primary'
-          >
-            Support
-          </Link>
+          {docsUrl && (
+            <Link href={docsUrl} target='_blank' className='text-primary'>
+              Documentation
+            </Link>
+          )}
+          {repoName && (
+            <Link
+              href={`https://github.com/themeselection/${repoName}/issues`}
+              target='_blank'
+              className='text-primary'
+            >
+              Support
+            </Link>
+          )}
         </div>
       )}
     </div>
