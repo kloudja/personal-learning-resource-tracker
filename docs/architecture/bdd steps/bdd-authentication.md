@@ -38,4 +38,4 @@ Feature: Authentication
   Scenario: User logs out
     Given the user is authenticated
     When the user clicks the logout button
-    Then the session and JWT are cleared and the user is redirected
+    Then the session and JWT are cleared and the user is redirected to the login page
