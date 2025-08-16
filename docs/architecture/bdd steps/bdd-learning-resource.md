@@ -11,6 +11,6 @@ Feature: Learning Resource Management
     Then the tags are linked to the resource and visible on the details page
 
   Scenario: User soft deletes a resource
-    Given the user is authenticated and and owns the resource
+    Given the user is authenticated and owns the resource
     When the user deletes the resource
     Then the resource is marked as deleted and hidden from the default view, but remains in the database
