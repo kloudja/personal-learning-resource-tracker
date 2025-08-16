@@ -36,7 +36,7 @@ const UserDropdown = () => {
   const [open, setOpen] = useState(false)
 
   // Refs
-  const anchorRef = useRef<HTMLDivElement>(null)
+  const anchorRef = useRef<HTMLElement | null>(null)
 
   // Hooks
   const router = useRouter()
@@ -67,7 +67,6 @@ const UserDropdown = () => {
         className='mis-2'
       >
         <Avatar
-          ref={anchorRef}
           alt='John Doe'
           src='/images/avatars/1.png'
           onClick={handleDropdownOpen}
