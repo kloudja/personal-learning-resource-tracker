@@ -14,7 +14,7 @@ export type VerticalNavState = {
 }
 
 export type VerticalNavContextProps = VerticalNavState & {
-  updateVerticalNavState: (values: VerticalNavState) => void
+  updateVerticalNavState: (values: Partial<VerticalNavState>) => void
   toggleVerticalNav: (value?: VerticalNavState['isToggled']) => void
 }
 
@@ -22,7 +22,7 @@ const VerticalNavContext = createContext({} as VerticalNavContextProps)
 
 export const VerticalNavProvider = ({ children }: ChildrenType) => {
   // States
-  const [verticalNavState, setVerticalNavState] = useState<VerticalNavState>()
+  const [verticalNavState, setVerticalNavState] = useState<VerticalNavState>({})
 
   // Hooks
   const updateVerticalNavState = useCallback((values: Partial<VerticalNavState>) => {
