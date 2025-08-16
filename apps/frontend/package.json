@@ -11,7 +11,8 @@
     "lint:fix": "next lint --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "build:icons": "tsx src/assets/iconify-icons/bundle-icons-css.ts",
-    "postinstall": "npm run build:icons"
+    "postinstall": "npm run build:icons",
+    "test": "vitest run"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -54,7 +55,8 @@
     "tailwindcss": "^3.4.4",
     "tailwindcss-logical": "^3.0.1",
     "tsx": "^4.15.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^3.2.4"
   },
   "resolutions": {
     "rimraf": "^5.0.7"
